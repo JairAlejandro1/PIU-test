@@ -87,9 +87,13 @@ public class General {
 
 ```
 
+<h1> Acomodando elementos en el JFrame From </h1>
+
 En el package "Views" en el JFrame From colocamos 4 JLabels, 4 JTextField, 4 JButton y por ultimo un JTable de la siguiente manera:
 
 ![](https://github.com/JairAlejandro1/Imagenes/blob/587880aef012e163c4b5f68ef7e73f499b6ff420/re2.png)
+
+<h1> Diseño de la tabla </h1>
 
 Le agregamos diseño a la tabla con los nombres de las columnas, haremos un array para la numeracion de los datos que llamaremos de nuestra clase "General" despues  hacemos el metodo "limpiarCampos" el cual usaremos luego.
 

@@ -5,9 +5,9 @@
 package Views;
 
 import javax.swing.table.DefaultTableModel;
-import models.Municipio;
-import static models.Municipio.llenarDatosTabla;
-import static models.Municipio.TablaDatos;
+import models.General;
+import static models.General.llenarDatosTabla;
+import static models.General.TablaDatos;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -41,7 +41,7 @@ public class Principal extends javax.swing.JFrame {
         Object[] datos = new Object[dataMunicipios.getColumnCount()];
         int i = 0;
         dataMunicipios.setRowCount(0);
-        for (Municipio municipio : TablaDatos) {
+        for (General municipio : TablaDatos) {
             datos[0] = i;
             datos[1] = municipio.getId();
             datos[2] = municipio.getNomEstado();
@@ -213,10 +213,10 @@ public class Principal extends javax.swing.JFrame {
         String nomMunicipio = this.txtNombreMunicipio.getText();
 
         if (recNo == -1) {
-            Municipio.añadirDatosTabla(id, nomEstado, nomMunicipio);
+            General.añadirDatosTabla(id, nomEstado, nomMunicipio);
         } else {
             System.out.println("Actualizando datos");
-            Municipio.actualizarDatosTabla(recNo, id, nomEstado, nomMunicipio);
+            General.actualizarDatosTabla(recNo, id, nomEstado, nomMunicipio);
             this.btnActualizar.setSelected(false);
             System.out.println(TablaDatos);
         }
@@ -236,7 +236,7 @@ public class Principal extends javax.swing.JFrame {
 
         if (filaActual != -1) {
             System.out.println(filaActual);
-            Municipio.eliminarDatosTabla(filaActual);
+            General.eliminarDatosTabla(filaActual);
             setDatos();
             System.out.println(TablaDatos);
         } else {

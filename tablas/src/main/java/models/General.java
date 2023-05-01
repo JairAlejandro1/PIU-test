@@ -3,18 +3,18 @@ package models;
 
 import java.util.ArrayList;
 
-public class Municipio {
+public class General {
 
     private int id;
     private String nomEstado;
     private String nomMunicipio;
-    public static ArrayList<Municipio> TablaDatos = new ArrayList<>();
+    public static ArrayList<General> TablaDatos = new ArrayList<>();
 
-    public Municipio() {
+    public General() {
 
     }
 
-    public Municipio(int id, String nomEstado, String nomMunicipio) {
+    public General(int id, String nomEstado, String nomMunicipio) {
         this.id = id;
         this.nomEstado = nomEstado;
         this.nomMunicipio = nomMunicipio;
@@ -45,11 +45,11 @@ public class Municipio {
     }
 
     public static void llenarDatosTabla() {
-        TablaDatos.add(new Municipio(1, "Camepeche", "Seyba"));
-        TablaDatos.add(new Municipio(2, "Campeche", "Champo"));
-        TablaDatos.add(new Municipio(3, "Campeche", "Carmen"));
-        TablaDatos.add(new Municipio(4, "Campeche", "Tenabo"));
-        TablaDatos.add(new Municipio(5, "Campeche", "Palizada"));
+        TablaDatos.add(new General(1, "Camepeche", "Seyba"));
+        TablaDatos.add(new General(2, "Campeche", "Champo"));
+        TablaDatos.add(new General(3, "Campeche", "Carmen"));
+        TablaDatos.add(new General(4, "Campeche", "Tenabo"));
+        TablaDatos.add(new General(5, "Campeche", "Palizada"));
 
     }
 
@@ -58,7 +58,7 @@ public class Municipio {
     }
 
     public static void añadirDatosTabla(int id, String nomEstado, String nomMunicipio) {
-        TablaDatos.add(new Municipio(id, nomEstado, nomMunicipio));
+        TablaDatos.add(new General(id, nomEstado, nomMunicipio));
     }
 
     public static void actualizarDatosTabla(int recNo, int id, String nomEstado, String nomMunicipio) {

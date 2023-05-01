@@ -2,8 +2,8 @@ package Tablas;
 
 import Views.Principal;
 import java.util.ArrayList;
-import models.Municipio;
-import static models.Municipio.*;
+import models.General;
+import static models.General.*;
 
 
 public class Main {

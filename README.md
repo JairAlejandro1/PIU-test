@@ -4,7 +4,8 @@ Primero creamos nuestra proyecto junto con 3 packages que usaremos luego, dentro
 
 ![](https://github.com/JairAlejandro1/Imagenes/blob/d566d44c20cb7676878805f1644dcc433fddf3f4/re1.png)
 
-En la clase “General” creamos las variables de “ID, nomEstado y nomMunicipio” con sus setters y getters. En ella crearemos tambien un Array y un ToString.
+En la clase “General” creamos las variables de “ID, nomEstado y nomMunicipio” con sus setters y getters. En ella crearemos tambien un Array y un ToString.Luego de eso se crean 4 metodos, llenarDatosTabla, eliminarDatosTabla, añadirDatosTabla y actualizarDatosTabla, todos ellos dentro de la misma clase "General".
+
 
 ```
 package models;
@@ -84,7 +85,10 @@ public class General {
     }
 }
 
-```
+
+
+
+
 
 
 

@@ -128,9 +128,7 @@ Le agregamos diseño a la tabla con los nombres de las columnas, haremos un arra
         this.txtNombreMunicipio.setText("");
     }
     
-    
-    ```
-    
+ ```
     
     ![](https://github.com/JairAlejandro1/Imagenes/blob/587880aef012e163c4b5f68ef7e73f499b6ff420/re3.png)
 

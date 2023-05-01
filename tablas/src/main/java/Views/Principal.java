@@ -6,8 +6,8 @@ package Views;
 
 import javax.swing.table.DefaultTableModel;
 import models.Municipio;
-import static models.Municipio.llenarMunicipios;
-import static models.Municipio.municipios;
+import static models.Municipio.llenarDatosTabla;
+import static models.Municipio.TablaDatos;
 
 
 public class Principal extends javax.swing.JFrame {
@@ -28,30 +28,31 @@ public class Principal extends javax.swing.JFrame {
         this.txtRecNo.setVisible(false);
         this.lblRecNo.setVisible(false);
 
-        llenarMunicipios();
+        llenarDatosTabla();
         setModelo();
         setDatos();
-        tlbMunicipios.repaint();
+        tlbDatosGenerales.repaint();
     }
 
     public void setModelo(){
-        String[] tlbCabecera = {"No ","ID","Nombre","Estado"};
+        String[] tlbCabecera = {"No ","ID","Estado","Municipio"};
         dataMunicipios.setColumnIdentifiers(tlbCabecera);
-        tlbMunicipios.setModel(dataMunicipios);
+        tlbDatosGenerales.setModel(dataMunicipios);
     }
     
     public void setDatos(){
         Object[] datos = new Object[dataMunicipios.getColumnCount()];
         int i =0;
         dataMunicipios.setRowCount(0);
-        for (Municipio municipio : municipios) {
+        for (Municipio municipio : TablaDatos) {
             datos[0] = i;
             datos[1] = municipio.getId();
-            datos[2] = municipio.getNombre();
+            datos[2] = municipio.getNomEstado();
+            datos[3] = municipio.getNomMunicipio();
             i++;
             dataMunicipios.addRow(datos);
         }
-        tlbMunicipios.setModel(dataMunicipios);
+        tlbDatosGenerales.setModel(dataMunicipios);
         
     }
     
@@ -59,7 +60,8 @@ public class Principal extends javax.swing.JFrame {
     public void limpiarCampos(){
         this.txtRecNo.setText("-1");
         this.txtId.setText("");
-        this.txtNombre.setText("");
+        this.txtNombreEstado.setText("");
+        this.txtNombreMunicipio.setText("");
     }
  
     @SuppressWarnings("unchecked")
@@ -67,32 +69,34 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         lblNombre = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
+        txtNombreEstado = new javax.swing.JTextField();
         lblID = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
-        btnCAceptar = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tlbMunicipios = new javax.swing.JTable();
-        btnLimpiar = new javax.swing.JButton();
+        tlbDatosGenerales = new javax.swing.JTable();
+        btnCancelar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JToggleButton();
         btnEliminar = new javax.swing.JButton();
         txtRecNo = new javax.swing.JTextField();
         lblRecNo = new javax.swing.JLabel();
+        txtNombreMunicipio = new javax.swing.JTextField();
+        lblMunicipio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblNombre.setText("Nombre");
+        lblNombre.setText("Estado");
 
         lblID.setText("ID");
 
-        btnCAceptar.setText("Aceptar");
-        btnCAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCAceptarMouseClicked(evt);
+                btnAceptarMouseClicked(evt);
             }
         });
 
-        tlbMunicipios.setModel(new javax.swing.table.DefaultTableModel(
+        tlbDatosGenerales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -103,12 +107,12 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tlbMunicipios);
+        jScrollPane1.setViewportView(tlbDatosGenerales);
 
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnLimpiarMouseClicked(evt);
+                btnCancelarMouseClicked(evt);
             }
         });
 
@@ -128,6 +132,14 @@ public class Principal extends javax.swing.JFrame {
 
         lblRecNo.setText("RecNo");
 
+        txtNombreMunicipio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreMunicipioActionPerformed(evt);
+            }
+        });
+
+        lblMunicipio.setText("Municipio");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,16 +157,18 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombre)
                     .addComponent(lblID)
-                    .addComponent(lblRecNo))
-                .addGap(58, 58, 58)
+                    .addComponent(lblRecNo)
+                    .addComponent(lblMunicipio))
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtRecNo)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCAceptar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLimpiar))
+                    .addComponent(txtNombreMunicipio)
+                    .addComponent(txtRecNo, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
                     .addComponent(txtId)
-                    .addComponent(txtNombre))
+                    .addComponent(txtNombreEstado, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAceptar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -167,64 +181,69 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombre)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblID)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCAceptar)
-                    .addComponent(btnLimpiar))
+                    .addComponent(txtNombreEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombreMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMunicipio))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblID)
+                            .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAceptar)
+                            .addComponent(btnCancelar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(49, Short.MAX_VALUE))
+                        .addContainerGap(61, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminar)
-                        .addGap(36, 36, 36)
                         .addComponent(btnActualizar)
-                        .addGap(150, 150, 150))))
+                        .addGap(50, 50, 50)
+                        .addComponent(btnEliminar)
+                        .addGap(144, 144, 144))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCAceptarMouseClicked
+    private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
         int recNo = Integer.parseInt(this.txtRecNo.getText().trim());
         int id = Integer.parseInt(this.txtId.getText().trim());
-        String nombre = this.txtNombre.getText();      
+        String nomEstado = this.txtNombreEstado.getText(); 
+        String nomMunicipio = this.txtNombreMunicipio.getText(); 
 
         
         if (recNo == -1) {
-            Municipio.añadirMunicipios(id, nombre);
+            Municipio.añadirDatosTabla(id, nomEstado, nomMunicipio);
         }else{
             System.out.println("Actualizando datos");
-            Municipio.actualizarMunicipio(recNo, id, nombre);
+            Municipio.actualizarDatosTabla(recNo, id, nomEstado, nomMunicipio);
             this.btnActualizar.setSelected(false);
-            System.out.println(municipios);
+            System.out.println(TablaDatos);
         }
         
         setDatos();
         limpiarCampos();
                
-    }//GEN-LAST:event_btnCAceptarMouseClicked
+    }//GEN-LAST:event_btnAceptarMouseClicked
 
-    private void btnLimpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseClicked
+    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         limpiarCampos();
-    }//GEN-LAST:event_btnLimpiarMouseClicked
+    }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
         
-        int filaActual = tlbMunicipios.getSelectedRow();
+        int filaActual = tlbDatosGenerales.getSelectedRow();
 
         if (filaActual != -1) {
             System.out.println(filaActual);
-            Municipio.eliminarMunicipios(filaActual);
+            Municipio.eliminarDatosTabla(filaActual);
             setDatos();
-            System.out.println(municipios);
+            System.out.println(TablaDatos);
         } else{
             System.out.println("No hay filas existentes para eliminar");
         }       
@@ -232,7 +251,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarMouseClicked
 
     private void btnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseClicked
-        int filaActual = tlbMunicipios.getSelectedRow();
+        int filaActual = tlbDatosGenerales.getSelectedRow();
         System.out.println(filaActual);
         System.out.println(this.btnActualizar.isSelected());
         if (this.btnActualizar.isSelected()) {
@@ -240,10 +259,12 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println(dataMunicipios.getValueAt(filaActual, 0));
                 System.out.println(dataMunicipios.getValueAt(filaActual, 1));
                 System.out.println(dataMunicipios.getValueAt(filaActual, 2));
+                System.out.println(dataMunicipios.getValueAt(filaActual, 3));
+                
                 this.txtRecNo.setText(""+dataMunicipios.getValueAt(filaActual, 0));
                 this.txtId.setText(""+dataMunicipios.getValueAt(filaActual, 1));
-
-                this.txtNombre.setText(""+dataMunicipios.getValueAt(filaActual, 2));
+                this.txtNombreEstado.setText(""+dataMunicipios.getValueAt(filaActual, 2));
+                this.txtNombreMunicipio.setText(""+dataMunicipios.getValueAt(filaActual, 3));
 
             
             }else{
@@ -256,19 +277,25 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnActualizarMouseClicked
 
+    private void txtNombreMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreMunicipioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreMunicipioActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JToggleButton btnActualizar;
-    private javax.swing.JButton btnCAceptar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblMunicipio;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRecNo;
-    private javax.swing.JTable tlbMunicipios;
+    private javax.swing.JTable tlbDatosGenerales;
     private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreEstado;
+    private javax.swing.JTextField txtNombreMunicipio;
     private javax.swing.JTextField txtRecNo;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,77 +4,87 @@ package models;
 import java.util.ArrayList;
 
 public class Municipio {
+
+
     private int id;
-    private String nombre;
-    public static ArrayList<Municipio> municipios = new ArrayList<>();
+    private String nomEstado;
+    private String nomMunicipio;
+    public static ArrayList<Municipio> TablaDatos = new ArrayList<>();
 
 
     public Municipio() {
 
     }
 
-    public Municipio(int id, String nombre) {
+    public Municipio(int id, String nomEstado, String nomMunicipio) {
         this.id = id;
-        this.nombre = nombre;
+        this.nomEstado = nomEstado;
+        this.nomMunicipio = nomMunicipio;
     }
+    
 
     public int getId() {
         return id;
     }
 
+   
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+
+    public String getNomEstado() {
+        return nomEstado;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+   
+    public void setNomEstado(String nomEstado) {
+        this.nomEstado = nomEstado;
     }
-    
-        public static void llenarMunicipios(){
-        municipios.add(new Municipio(1,"Calkini"));
-        municipios.add(new Municipio(2,"Campeche"));
-        municipios.add(new Municipio(3,"Carmen"));        
+
+   
+    public String getNomMunicipio() {
+        return nomMunicipio;
+    }
+
+   
+    public void setNomMunicipio(String nomMunicipio) {
+        this.nomMunicipio = nomMunicipio;
+    }
+
+   
+        public static void llenarDatosTabla(){
+        TablaDatos.add(new Municipio(1,"Camepeche", "Seyba"));
+        TablaDatos.add(new Municipio(2,"Campeche", "Champo"));
+        TablaDatos.add(new Municipio(3,"Campeche", "Carmen"));  
+        TablaDatos.add(new Municipio(4,"Campeche", "Tenabo"));
+        TablaDatos.add(new Municipio(5,"Campeche", "Palizada"));
         
     }
+  
     
     
-    public static void listaMunicipiosForE(){
-        System.out.println("For each");
-        for (Municipio municipio : municipios) {
-            System.out.println(municipio);
-        }
-    }
-    
-    public static void listaMunicipiosForI(){
-        System.out.println("forI");
-        for (int i = 0; i < municipios.size(); i++) {
-            System.out.println(municipios.get(i).toString());
-        }
-    }
-    
-    public static void eliminarMunicipios(int id){
-        municipios.remove(id);
+    public static void eliminarDatosTabla(int id){
+        TablaDatos.remove(id);
     }
         
-    public static void añadirMunicipios(int id,String nombre){
-        municipios.add(new Municipio(id,nombre));
+    public static void añadirDatosTabla(int id,String nomEstado, String nomMunicipio){
+        TablaDatos.add(new Municipio(id,nomEstado,nomMunicipio));
     }
     
-    public static void actualizarMunicipio(int recNo, int id, String nombre){
-        municipios.get(recNo).setId(id);
-        municipios.get(recNo).setNombre(nombre);
+    public static void actualizarDatosTabla(int recNo, int id, String nomEstado, String nomMunicipio){
+        TablaDatos.get(recNo).setId(id);
+        TablaDatos.get(recNo).setNomEstado(nomEstado);
+        TablaDatos.get(recNo).setNomMunicipio(nomMunicipio);
+        
 
     }
     
     @Override
     public String toString() {
 
-        return "Municipio{" + "id=" + id + ", nombre=" + nombre + '}';
-    }
+        return "Tabla{" + "id: " + getId() + ", Estado: " + getNomEstado() + ", Municipio: " + getNomMunicipio() + '}';
 
 
+ }
 }

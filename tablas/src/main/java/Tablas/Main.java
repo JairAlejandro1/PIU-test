@@ -1,4 +1,4 @@
-package com.mycompany.tablas;
+package Tablas;
 
 import Views.Principal;
 import java.util.ArrayList;

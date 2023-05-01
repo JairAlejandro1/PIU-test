@@ -45,7 +45,7 @@ public class General {
     }
 
     public static void llenarDatosTabla() {
-        TablaDatos.add(new General(1, "Camepeche", "Seyba"));
+        TablaDatos.add(new General(1, "Camepeche", "SeybaPlaya"));
         TablaDatos.add(new General(2, "Campeche", "Champo"));
         TablaDatos.add(new General(3, "Campeche", "Carmen"));
         TablaDatos.add(new General(4, "Campeche", "Tenabo"));

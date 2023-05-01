@@ -89,7 +89,44 @@ public class General {
 
 En el package "Views" en el JFrame From colocamos 4 JLabels, 4 JTextField, 4 JButton y por ultimo un JTable de la siguiente manera:
 
-![](https://github.com/JairAlejandro1/Imagenes/blob/d566d44c20cb7676878805f1644dcc433fddf3f4/re1.png)
+![](https://github.com/JairAlejandro1/Imagenes/blob/587880aef012e163c4b5f68ef7e73f499b6ff420/re2.png)
+
+Le agregamos diseño a la tabla con los nombres de las columnas, haremos un array para la numeracion de los datos que llamaremos de nuestra clase "General" despues  hacemos el metodo "limpiarCampos" el cual usaremos luego.
+
+```
+
+ public void setModelo() {
+        String[] tlbCabecera = {"No ", "ID", "Estado", "Municipio"};
+        dataMunicipios.setColumnIdentifiers(tlbCabecera);
+        tlbDatosGenerales.setModel(dataMunicipios);
+    }
+
+    public void setDatos() {
+        Object[] datos = new Object[dataMunicipios.getColumnCount()];
+        int i = 0;
+        dataMunicipios.setRowCount(0);
+        for (General municipio : TablaDatos) {
+            datos[0] = i;
+            datos[1] = municipio.getId();
+            datos[2] = municipio.getNomEstado();
+            datos[3] = municipio.getNomMunicipio();
+            i++;
+            dataMunicipios.addRow(datos);
+        }
+        tlbDatosGenerales.setModel(dataMunicipios);
+
+    }
+
+    public void limpiarCampos() {
+        this.txtRecNo.setText("-1");
+        this.txtId.setText("");
+        this.txtNombreEstado.setText("");
+        this.txtNombreMunicipio.setText("");
+    }
+    
+    ```
+    
+    ![](https://github.com/JairAlejandro1/Imagenes/blob/587880aef012e163c4b5f68ef7e73f499b6ff420/re3.png)
 
 
 

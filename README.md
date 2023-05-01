@@ -130,8 +130,142 @@ Le agregamos diseño a la tabla con los nombres de las columnas, haremos un arra
     
  ```
     
-    ![](https://github.com/JairAlejandro1/Imagenes/blob/8e0a60c0f46ae13b9d28013f76dd6cf9b17a0117/re3.png)
+   ![](https://github.com/JairAlejandro1/Imagenes/blob/8e0a60c0f46ae13b9d28013f76dd6cf9b17a0117/re3.png)
+   
+   <h1> Funcionalidad de los botones </h1>
+   
+   <h1> Boton Aceptar </h1>
+   
+Cuando el valor de recNo es -1 agregamos a la tabla los datos ingresados en los campos de texto. Si no es así, actualizamos la información de la tabla correspondiente con los mismos datos. Posteriormente, llamamos al método "setDatos()" para que la tabla obtenga los valores ingresados y aparte llamamos al método "limpiarCampos()" para borrar los valores ingresados en los campos de texto.
+   
+```
     
+     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {                                        
+        int recNo = Integer.parseInt(this.txtRecNo.getText().trim());
+        int id = Integer.parseInt(this.txtId.getText().trim());
+        String nomEstado = this.txtNombreEstado.getText();
+        String nomMunicipio = this.txtNombreMunicipio.getText();
+
+        if (recNo == -1) {
+            General.añadirDatosTabla(id, nomEstado, nomMunicipio);
+        } else {
+            System.out.println("Actualizando datos");
+            General.actualizarDatosTabla(recNo, id, nomEstado, nomMunicipio);
+            this.btnActualizar.setSelected(false);
+            System.out.println(TablaDatos);
+        }
+
+        setDatos();
+        limpiarCampos();
+
+    }
+    
+ ```
+ 
+ <h1> Boton Cancelar </h1>
+ 
+ En el boton "Cancelar" solo se eliminaran los datos ingresados en los campos de texto.
+ 
+ 
+ ```
+ 
+  private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {                                         
+        limpiarCampos();
+    }            
+ 
+```
+ 
+  <h1> Boton Eliminar </h1>
+  
+  En el boton "Eliminar" se eliminará una fila completa de la tabla incluyendo la numeracion.
+  
+```
+   
+   private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {                                         
+
+        int filaActual = tlbDatosGenerales.getSelectedRow();
+
+        if (filaActual != -1) {
+            System.out.println(filaActual);
+            General.eliminarDatosTabla(filaActual);
+            setDatos();
+            System.out.println(TablaDatos);
+        } else {
+            System.out.println("No hay filas existentes para eliminar");
+        }
+
+    }
+    
+```
+  
+  <h1> Boton Actualizar </h1>
+  
+El boton de "Actualizar" realiza la funcion de actualizar una fila, los datos de dicha se mandan a los campos de texto donde el usuario puede modificarlos para posteorimente presionar "Aceptar" y asi actualizar la fila antes seleccionada.
+
+```
+
+private void btnActualizarMouseClicked(java.awt.event.MouseEvent evt) {                                           
+        int filaActual = tlbDatosGenerales.getSelectedRow();
+        System.out.println(filaActual);
+        System.out.println(this.btnActualizar.isSelected());
+        if (this.btnActualizar.isSelected()) {
+            if (filaActual != -1) {
+                System.out.println(dataMunicipios.getValueAt(filaActual, 0));
+                System.out.println(dataMunicipios.getValueAt(filaActual, 1));
+                System.out.println(dataMunicipios.getValueAt(filaActual, 2));
+                System.out.println(dataMunicipios.getValueAt(filaActual, 3));
+
+                this.txtRecNo.setText("" + dataMunicipios.getValueAt(filaActual, 0));
+                this.txtId.setText("" + dataMunicipios.getValueAt(filaActual, 1));
+                this.txtNombreEstado.setText("" + dataMunicipios.getValueAt(filaActual, 2));
+                this.txtNombreMunicipio.setText("" + dataMunicipios.getValueAt(filaActual, 3));
+
+            } else {
+                System.out.println("Debe seleccionar un registro");
+                this.btnActualizar.setSelected(false);
+            }
+        } else {
+            limpiarCampos();
+        }
+
+    }  
+    
+```
+ 
+<h1> Main </h1>
+
+Como ultimo en nuestra clase Main le daremos visibilidad a nuestro JFrame From para que asi todo lo antes dicho se pueda utilizar.
+
+```
+
+public class Main {
+
+    public static Principal principal = new Principal();
+
+   
+    public static void main(String[] args) {
+        
+        principal.setVisible(true);
+        principal.setLocationRelativeTo(null);
+
+    }
+}
+
+```
+
+<h1> Fotos del resultado final </h1>
+
+<h1> Escribimos en los campos de texto </h1>
+
+![](https://github.com/JairAlejandro1/Imagenes/blob/8e0a60c0f46ae13b9d28013f76dd6cf9b17a0117/re4.png)
+
+<h1> Se agregan los datos ingresados en los cuadros de texto </h1>
+
+![](https://github.com/JairAlejandro1/Imagenes/blob/8e0a60c0f46ae13b9d28013f76dd6cf9b17a0117/re5.png)
+
+<h1> Actualizacion de datos </h1>
+
+![](https://github.com/JairAlejandro1/Imagenes/blob/8e0a60c0f46ae13b9d28013f76dd6cf9b17a0117/re6.png)
     
 
 

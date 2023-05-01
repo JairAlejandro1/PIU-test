@@ -9,18 +9,15 @@ import models.Municipio;
 import static models.Municipio.llenarDatosTabla;
 import static models.Municipio.TablaDatos;
 
-
 public class Principal extends javax.swing.JFrame {
 
-    DefaultTableModel dataMunicipios = new DefaultTableModel(){
-       @Override
-        public boolean isCellEditable(int row,int column){
-           return false;
-       } 
+    DefaultTableModel dataMunicipios = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
     };
-    
-    
-    
+
     public Principal() {
 
         initComponents();
@@ -34,15 +31,15 @@ public class Principal extends javax.swing.JFrame {
         tlbDatosGenerales.repaint();
     }
 
-    public void setModelo(){
-        String[] tlbCabecera = {"No ","ID","Estado","Municipio"};
+    public void setModelo() {
+        String[] tlbCabecera = {"No ", "ID", "Estado", "Municipio"};
         dataMunicipios.setColumnIdentifiers(tlbCabecera);
         tlbDatosGenerales.setModel(dataMunicipios);
     }
-    
-    public void setDatos(){
+
+    public void setDatos() {
         Object[] datos = new Object[dataMunicipios.getColumnCount()];
-        int i =0;
+        int i = 0;
         dataMunicipios.setRowCount(0);
         for (Municipio municipio : TablaDatos) {
             datos[0] = i;
@@ -53,17 +50,16 @@ public class Principal extends javax.swing.JFrame {
             dataMunicipios.addRow(datos);
         }
         tlbDatosGenerales.setModel(dataMunicipios);
-        
+
     }
-    
-    
-    public void limpiarCampos(){
+
+    public void limpiarCampos() {
         this.txtRecNo.setText("-1");
         this.txtId.setText("");
         this.txtNombreEstado.setText("");
         this.txtNombreMunicipio.setText("");
     }
- 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -85,9 +81,9 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblNombre.setText("Estado");
+        lblNombre.setText("Estado:");
 
-        lblID.setText("ID");
+        lblID.setText("ID:");
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,7 +126,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        lblRecNo.setText("RecNo");
+        lblRecNo.setText("RecNo:");
 
         txtNombreMunicipio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +134,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        lblMunicipio.setText("Municipio");
+        lblMunicipio.setText("Municipio:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,13 +194,13 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(btnCancelar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(61, Short.MAX_VALUE))
+                        .addContainerGap(18, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnActualizar)
-                        .addGap(50, 50, 50)
+                        .addGap(69, 69, 69)
                         .addComponent(btnEliminar)
-                        .addGap(144, 144, 144))))
+                        .addGap(125, 125, 125))))
         );
 
         pack();
@@ -213,22 +209,21 @@ public class Principal extends javax.swing.JFrame {
     private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
         int recNo = Integer.parseInt(this.txtRecNo.getText().trim());
         int id = Integer.parseInt(this.txtId.getText().trim());
-        String nomEstado = this.txtNombreEstado.getText(); 
-        String nomMunicipio = this.txtNombreMunicipio.getText(); 
+        String nomEstado = this.txtNombreEstado.getText();
+        String nomMunicipio = this.txtNombreMunicipio.getText();
 
-        
         if (recNo == -1) {
             Municipio.añadirDatosTabla(id, nomEstado, nomMunicipio);
-        }else{
+        } else {
             System.out.println("Actualizando datos");
             Municipio.actualizarDatosTabla(recNo, id, nomEstado, nomMunicipio);
             this.btnActualizar.setSelected(false);
             System.out.println(TablaDatos);
         }
-        
+
         setDatos();
         limpiarCampos();
-               
+
     }//GEN-LAST:event_btnAceptarMouseClicked
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
@@ -236,7 +231,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
-        
+
         int filaActual = tlbDatosGenerales.getSelectedRow();
 
         if (filaActual != -1) {
@@ -244,10 +239,10 @@ public class Principal extends javax.swing.JFrame {
             Municipio.eliminarDatosTabla(filaActual);
             setDatos();
             System.out.println(TablaDatos);
-        } else{
+        } else {
             System.out.println("No hay filas existentes para eliminar");
-        }       
-        
+        }
+
     }//GEN-LAST:event_btnEliminarMouseClicked
 
     private void btnActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseClicked
@@ -260,18 +255,17 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println(dataMunicipios.getValueAt(filaActual, 1));
                 System.out.println(dataMunicipios.getValueAt(filaActual, 2));
                 System.out.println(dataMunicipios.getValueAt(filaActual, 3));
-                
-                this.txtRecNo.setText(""+dataMunicipios.getValueAt(filaActual, 0));
-                this.txtId.setText(""+dataMunicipios.getValueAt(filaActual, 1));
-                this.txtNombreEstado.setText(""+dataMunicipios.getValueAt(filaActual, 2));
-                this.txtNombreMunicipio.setText(""+dataMunicipios.getValueAt(filaActual, 3));
 
-            
-            }else{
+                this.txtRecNo.setText("" + dataMunicipios.getValueAt(filaActual, 0));
+                this.txtId.setText("" + dataMunicipios.getValueAt(filaActual, 1));
+                this.txtNombreEstado.setText("" + dataMunicipios.getValueAt(filaActual, 2));
+                this.txtNombreMunicipio.setText("" + dataMunicipios.getValueAt(filaActual, 3));
+
+            } else {
                 System.out.println("Debe seleccionar un registro");
                 this.btnActualizar.setSelected(false);
-            } 
-        }else{
+            }
+        } else {
             limpiarCampos();
         }
 
@@ -281,7 +275,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreMunicipioActionPerformed
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JToggleButton btnActualizar;

@@ -6,7 +6,7 @@ Primero creamos nuestra proyecto junto con 3 packages que usaremos luego, dentro
 
 En la clase “General” creamos las variables de “ID, nomEstado y nomMunicipio” con sus setters y getters. En ella crearemos tambien un Array y un ToString.
 
-'''
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 package models;
 
@@ -85,7 +85,7 @@ public class General {
     }
 }
 
-'''
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
